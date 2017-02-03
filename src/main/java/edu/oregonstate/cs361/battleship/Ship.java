@@ -1,14 +1,7 @@
 package edu.oregonstate.cs361.battleship;
 
-
-
-/**
- * Created by brandon on 2/3/2017.
- */
-
-
 //Class data for all battleships
-public class Battleship {
+public class Ship {
 
     private CoordinatePair initial; //starting coordinate for battleship, either left or top
     private CoordinatePair terminal; //ending coordinate for battleship, either right or bottom
@@ -53,7 +46,7 @@ public class Battleship {
 
 
     //constructor
-    public Battleship(String name, int x, int y, int i, int j){
+    public Ship(String name, int x, int y, int i, int j) {
         setShipName(name); //set the name which will then be used to determine ship length
         if (shipName.contains("Destroyer") || (shipName.contains("destroyer"))){
             setShipLength(2);
@@ -74,16 +67,12 @@ public class Battleship {
 
     }
     //default constructor
-    public Battleship(){
+    public Ship() {
         shipName="Boaty McBoatFace";
         shipLength=0;
         setInitial(0,0);
         setTerminal(0,0);
         setOrientation('V');
     }
-
-    //no destructor in java because IT IS A TRASH TIER LANGUAGE
-    //Removed dynamic allocation, so hopefully it won't be an issue
-
 
 }
