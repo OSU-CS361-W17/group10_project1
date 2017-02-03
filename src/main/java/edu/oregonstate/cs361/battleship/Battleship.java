@@ -24,10 +24,10 @@ public class Battleship {
         this.shipLength = x;
     }
     public void setInitial(int x, int y){
-        this.initial = CoordinatePair(x,y);
+        this.initial = new CoordinatePair(x,y);
     }
     public void setTerminal(int x, int y){
-        this.terminal = CoordinatePair(x,y);
+        this.terminal = new CoordinatePair(x,y);
     }
     public void setOrientation(char x) {
         this.orientation = x;
@@ -53,16 +53,16 @@ public class Battleship {
 
 
     //constructor
-    public Battleship(String name, int x, int y, int i, int j, char c){
+    public Battleship(String name, int x, int y, int i, int j){
         setShipName(name); //set the name which will then be used to determine ship length
-        if (shipName.equals("Destroyer") || (shipName.equals("destroyer"))){
+        if (shipName.contains("Destroyer") || (shipName.contains("destroyer"))){
             setShipLength(2);
         }
         //Cruiser and Sub are same length. One long ugly or statement below
-        else if (shipName.equals("Submarine") || shipName.equals("Cruiser") || shipName.equals("submarine") || shipName.equals("cruiser")){
+        else if (shipName.contains("Submarine") || shipName.contains("Cruiser") || shipName.contains("submarine") || shipName.contains("cruiser")){
             setShipLength(3);
         }
-        else if (shipName.equals("Battleship") || shipName.equals("battleship")){
+        else if (shipName.contains("Battleship") || shipName.contains("battleship")){
             setShipLength(4);
         }
         //using contains since name contains space and probably more prone to error
@@ -71,7 +71,7 @@ public class Battleship {
         }
         setInitial (x, y);
         setTerminal (i, j);
-        setOrientation (c);
+
     }
     //default constructor
     public Battleship(){
