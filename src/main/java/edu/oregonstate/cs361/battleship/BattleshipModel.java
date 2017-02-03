@@ -18,7 +18,7 @@ public class BattleshipModel {
 
 
 
-    public ShipModel(){  //creates all relevant ships for game
+    public BattleshipModel() {  //creates all relevant ships for game
         aircraftCarrier = new Ship("Aircraft Carrier",0,0,0,0);
         battleship = new Ship("Ship",0,0,0,0);
         cruiser= new Ship("Cruiser",0,0,0,0);
