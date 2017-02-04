@@ -35,10 +35,12 @@ class ShipTest {
     public void testIsPlaced() {
         Ship shipA = new Ship("destroyer", new CoordinatePair(2, 2), "vertical");
         Ship shipB = new Ship("submarine", new CoordinatePair(7, 7), "horizontal");
+        Ship shipC = new Ship("computerDestroyer", new CoordinatePair(1,1),"horizontal");
 
         assertAll(
                 () -> assertTrue(shipA.isPlaced()),
-                () -> assertTrue(shipB.isPlaced())
+                () -> assertTrue(shipB.isPlaced()),
+                () -> assertTrue(shipC.isPlaced())
         );
     }
 
