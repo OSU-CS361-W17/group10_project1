@@ -42,6 +42,8 @@ public class BattleshipModel {
         this.computerCruiser = new Ship("computerCruiser", start, end);
         this.computerSubmarine = new Ship("computerSubmarine", start, end);
         this.computerDestroyer = new Ship("computerDestroyer", start, end);
+
+       placeComputerShips();
     }
 
     public BattleshipModel(
@@ -95,6 +97,15 @@ public class BattleshipModel {
         }
 
     }
+    private void placeComputerShips() {
+        this.placeShip("computerDestroyer",1,1,"vertical");
+        this.placeShip("computerSubmarine"7,3,"horizontal");
+        this.placeShip("computerCruiser",6,2,"horizontal");
+        this.placeShip("computerBattleship",3,4,"vertical");
+        this.placeShip("computerAircraftCarrier",5,5,"horizontal");
+
+    }
+
 
     private Ship getShip(String name) {
         Ship selectedShip = null;
@@ -134,6 +145,7 @@ public class BattleshipModel {
 
         return selectedShip;
     }
+
 
 }
 
