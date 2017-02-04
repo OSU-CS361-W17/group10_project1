@@ -17,9 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static spark.Spark.awaitInitialization;
 
 
-/**
- * Created by michaelhilton on 1/26/17.
- */
 class MainTest {
 
     @BeforeAll

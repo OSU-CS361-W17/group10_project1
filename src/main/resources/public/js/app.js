@@ -3,7 +3,7 @@ var gameModel;
 //This function will be called once the page is loaded.  It will get a new game model from the back end, and display it.
 $( document ).ready(function() {
 
-  $.getJSON("model", function( json ) {
+  $.getJSON("/model", function( json ) {
     displayGameState(json);
     gameModel = json;
    });
@@ -21,6 +21,7 @@ function placeShip() {
 
    //This will be called when the call is returned from the server.
    request.done(function( currModel ) {
+     console.log(currModel);
      displayGameState(currModel);
      gameModel = currModel;
 
@@ -28,6 +29,8 @@ function placeShip() {
 
    // if there is a problem, and the back end does not respond, then an alert will be shown.
    request.fail(function( jqXHR, textStatus ) {
+     console.log(jqXHR);
+     console.log(textStatus);
      alert( "Request failed: " + textStatus );
    });
 }
@@ -66,17 +69,17 @@ displayShip(gameModel.destroyer);
 displayShip(gameModel.submarine);
 
 for (var i = 0; i < gameModel.computerMisses.length; i++) {
-   $( '#TheirBoard #' + gameModel.computerMisses[i].Across + '_' + gameModel.computerMisses[i].Down ).css("background-color", "green");
+   $( '#TheirBoard #' + gameModel.computerMisses[i].across + '_' + gameModel.computerMisses[i].down ).css("background-color", "green");
 }
 for (var i = 0; i < gameModel.computerHits.length; i++) {
-   $( '#TheirBoard #' + gameModel.computerHits[i].Across + '_' + gameModel.computerHits[i].Down ).css("background-color", "red");
+   $( '#TheirBoard #' + gameModel.computerHits[i].across + '_' + gameModel.computerHits[i].down ).css("background-color", "red");
 }
 
 for (var i = 0; i < gameModel.playerMisses.length; i++) {
-   $( '#MyBoard #' + gameModel.playerMisses[i].Across + '_' + gameModel.playerMisses[i].Down ).css("background-color", "green");
+   $( '#MyBoard #' + gameModel.playerMisses[i].across + '_' + gameModel.playerMisses[i].down ).css("background-color", "green");
 }
 for (var i = 0; i < gameModel.playerHits.length; i++) {
-   $( '#MyBoard #' + gameModel.playerHits[i].Across + '_' + gameModel.playerHits[i].Down ).css("background-color", "red");
+   $( '#MyBoard #' + gameModel.playerHits[i].across + '_' + gameModel.playerHits[i].down ).css("background-color", "red");
 }
 
 
@@ -86,10 +89,10 @@ for (var i = 0; i < gameModel.playerHits.length; i++) {
 
 //This function will display a ship given a ship object in JSON
 function displayShip(ship){
- startCoordAcross = ship.start.Across;
- startCoordDown = ship.start.Down;
- endCoordAcross = ship.end.Across;
- endCoordDown = ship.end.Down;
+ startCoordAcross = ship.start.across;
+ startCoordDown = ship.start.down;
+ endCoordAcross = ship.end.across;
+ endCoordDown = ship.end.down;
  if(startCoordAcross > 0){
     if(startCoordAcross == endCoordAcross){
         for (i = startCoordDown; i <= endCoordDown; i++) {
