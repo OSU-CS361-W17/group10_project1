@@ -107,6 +107,13 @@ public class BattleshipModel {
     }
 
 
+    public void fireAt(CoordinatePair location) {
+
+
+        return null;
+
+    }
+
     private Ship getShip(String name) {
         Ship selectedShip = null;
 
@@ -147,5 +154,10 @@ public class BattleshipModel {
     }
 
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 }
 

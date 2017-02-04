@@ -98,4 +98,19 @@ public class Ship {
         return !(start.across == 0 && start.down == 0 && end.across == 0 && end.down == 0);
     }
 
+    public Boolean containsCoord(CoordinatePair location) {
+
+        // If the incoming coordinate is within the ship's taken up coordinates
+
+        if(location.down >= this.start.down
+                && location.down <= this.end.down
+                && location.across >= this.start.across
+                && location.across <= this.end.across)
+            return true;
+
+        else
+            return false;
+
+    }
+
 }

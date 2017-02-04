@@ -54,7 +54,17 @@ public class Main {
 
     //Similar to placeShip, but with firing.
     private static String fireAt(Request req) {
-        return null;
+
+        BattleshipModel model = getModelFromReq(req);
+
+        CoordinatePair target = new CoordinatePair();
+
+        target.setAcross(Integer.parseInt(req.params(":row")));
+        target.setDown(Integer.parseInt(req.params(":col")));
+
+        model.fireAt(target);
+
+        return modelToJSON(model);
     }
 
 }
