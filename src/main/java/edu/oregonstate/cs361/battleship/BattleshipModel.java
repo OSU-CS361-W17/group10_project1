@@ -109,7 +109,28 @@ public class BattleshipModel {
 
 
     public void fireAt(CoordinatePair location) {
-        
+
+        int row = location.getAcross();
+        int col = location.getDown();
+
+        boolean outOfBounds = true;
+
+        // Check to see if the coord is in bounds of the board(static 10 X 10)
+        if (row < 11 && row > 0) {
+
+            if (col < 11 && col > 0)
+
+                outOfBounds = false;
+        }
+
+        // If the coord is good
+        if (!outOfBounds) {
+
+            // Check the coord against each ship
+
+        }
+
+
     }
 
     private Ship getShip(String name) {
@@ -150,4 +171,7 @@ public class BattleshipModel {
 
         return selectedShip;
     }
+
+
+
 }
