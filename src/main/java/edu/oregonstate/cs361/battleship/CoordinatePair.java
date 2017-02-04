@@ -1,36 +1,35 @@
 package edu.oregonstate.cs361.battleship;
 
-/**
- * Created by brandon on 2/3/2017.
- */
 public class CoordinatePair {
-    int xCoordinate;        //self explanatory variables
-    int yCoordinate;
+    public int across;
+    public int down;
 
-    //setters
-    public void setxCoordinate(int x){
-        this.xCoordinate = x;
+    // setters
+    public void setAcross(int across){
+        this.across = across;
     }
-    public void setyCoordinate(int y){
-        this.yCoordinate = y;
-    }
-    //getters
-    public int getxCoordinate(){
-        return xCoordinate;
-    }
-    public int getyCoordinate(){
-        return yCoordinate;
+    public void setDown(int down){
+        this.down = down;
     }
 
-    //constructor
-    public CoordinatePair(int x, int y){
-        setxCoordinate(x);
-        setyCoordinate(y);
+    // getters
+    public int getAcross(){
+        return this.across;
     }
-    //default constructor
-    public CoordinatePair(){
-        setxCoordinate(0);
-        setyCoordinate(0);
+    public int getDown(){
+        return this.down;
+    }
+
+    // constructor
+    public CoordinatePair(int across, int down) {
+        this.across = across;
+        this.down = down;
+    }
+
+    // default constructor
+    public CoordinatePair() {
+        this.across = 0;
+        this.down = 0;
     }
 
 }
