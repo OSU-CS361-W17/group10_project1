@@ -76,9 +76,9 @@ public class Ship {
 
         // Determine end position from start and orientation
         if (orientation == "vertical") {
-            this.end = new CoordinatePair(start.across, start.down + this.length);
+            this.end = new CoordinatePair(start.across, start.down + this.length -1);
         } else if (orientation == "horizontal") {
-            this.end = new CoordinatePair(start.across + this.length, start.down);
+            this.end = new CoordinatePair(start.across + this.length -1, start.down);
         }
     }
 

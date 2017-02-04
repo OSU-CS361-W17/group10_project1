@@ -92,10 +92,10 @@ public class BattleshipModel {
             // Determine end position from start and orientation
             if (orientation.equals("vertical")) {
                 System.out.println("Setting end 1");
-                selectedShip.setEnd(down + selectedShip.getLength(), across);
+                selectedShip.setEnd(down + selectedShip.getLength() - 1, across);
             } else if (orientation.equals("horizontal")) {
                 System.out.println("setting end 2");
-                selectedShip.setEnd(down, across + selectedShip.getLength());
+                selectedShip.setEnd(down, across + selectedShip.getLength() - 1);
             }
         }
 
