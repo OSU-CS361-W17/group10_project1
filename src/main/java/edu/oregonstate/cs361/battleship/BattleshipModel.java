@@ -2,6 +2,9 @@ package edu.oregonstate.cs361.battleship;
 
 import com.google.gson.Gson;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class BattleshipModel {
 
     // declaring player variables for various battleships
@@ -20,10 +23,10 @@ public class BattleshipModel {
     public Ship computerAircraftCarrier;
 
     // Hits and Misses
-    public CoordinatePair[] playerHits = {};
-    public CoordinatePair[] playerMisses = {};
-    public CoordinatePair[] computerHits = {};
-    public CoordinatePair[] computerMisses = {};
+    public ArrayList<CoordinatePair> playerHits = new ArrayList<>();
+    public ArrayList<CoordinatePair> playerMisses = new ArrayList<>();
+    public ArrayList<CoordinatePair> computerHits = new ArrayList<>();
+    public ArrayList<CoordinatePair> computerMisses = new ArrayList<>();
 
 
     public BattleshipModel() {  //creates all relevant ships for game
@@ -52,10 +55,10 @@ public class BattleshipModel {
             Ship computerCruiser,
             Ship computerBattleship,
             Ship computerAircraftCarrier,
-            CoordinatePair[] playerHits,
-            CoordinatePair[] playerMisses,
-            CoordinatePair[] computerHits,
-            CoordinatePair[] computerMisses
+            ArrayList<CoordinatePair> playerHits,
+            ArrayList<CoordinatePair> playerMisses,
+            ArrayList<CoordinatePair> computerHits,
+            ArrayList<CoordinatePair> computerMisses
     ) {
         this.destroyer = destroyer;
         this.submarine = submarine;
@@ -76,30 +79,20 @@ public class BattleshipModel {
 
     public void placeShip(String name, int down, int across, String orientation) {
         Ship selectedShip = this.getShip(name);
-        Gson gson = new Gson();
-        System.out.println("Initial Ship:");
-        System.out.println(selectedShip);
-        System.out.println(gson.toJson(selectedShip));
 
         if(!selectedShip.isPlaced()) {
-            System.out.println("Placing Ship...");
-            System.out.println(down);
-            System.out.println(across);
-            System.out.println(orientation);
-            // Set start position
-            selectedShip.setStart(down, across);
+            CoordinatePair start = new CoordinatePair(down, across);
+            selectedShip.setStart(start);
 
             // Determine end position from start and orientation
             if (orientation.equals("vertical")) {
-                System.out.println("Setting end 1");
-                selectedShip.setEnd(down + selectedShip.getLength() - 1, across);
+                CoordinatePair end = new CoordinatePair(down + selectedShip.getLength() - 1, across);
+                selectedShip.setEnd(end);
             } else if (orientation.equals("horizontal")) {
-                System.out.println("setting end 2");
-                selectedShip.setEnd(down, across + selectedShip.getLength() - 1);
+                CoordinatePair end = new CoordinatePair(down, across + selectedShip.getLength() - 1);
+                selectedShip.setEnd(end);
             }
         }
-
-        System.out.println(gson.toJson(selectedShip));
 
     }
 

@@ -22,6 +22,9 @@ public class CoordinatePair {
 
     // constructor
     public CoordinatePair(int across, int down) {
+        if(across > 10 || down > 10) {
+            throw new IllegalArgumentException("Placement coordinates cannot exceed board size.");
+        }
         this.across = across;
         this.down = down;
     }
