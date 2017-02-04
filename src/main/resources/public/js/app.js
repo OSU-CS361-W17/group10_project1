@@ -11,8 +11,13 @@ $( document ).ready(function() {
 
 function placeShip() {
    // This ajax call will asnychonously call the back end, and tell it where to place the ship, then get back a game model with the ship placed, and display the new model.
+   var ship = $("#shipSelec").val();
+   var row = $("#rowSelec").val();
+   var col = $("#colSelec").val();
+   var orientation = $("#orientationSelec").val();
+
    var request = $.ajax({
-     url: "/placeShip/"+$( "#shipSelec" ).val()+"/"+$( "#rowSelec" ).val()+"/"+$( "#colSelec" ).val()+"/"+$( "#orientationSelec" ).val(),
+     url: "/placeShip/"+ship+"/"+row+"/"+col+"/"+orientation,
      method: "post",
      data: JSON.stringify(gameModel),
      contentType: "application/json; charset=utf-8",
@@ -21,7 +26,8 @@ function placeShip() {
 
    //This will be called when the call is returned from the server.
    request.done(function( currModel ) {
-     console.log(currModel);
+     $("#shipSelec option[value=" + ship + "]").remove();
+     toastr.info(ship + " placed!");
      displayGameState(currModel);
      gameModel = currModel;
 
@@ -31,7 +37,7 @@ function placeShip() {
    request.fail(function( jqXHR, textStatus ) {
      console.log(jqXHR);
      console.log(textStatus);
-     alert( "Request failed: " + textStatus );
+     toastr.error("Request failed: " + textStatus);
    });
 }
 
@@ -58,31 +64,41 @@ function fire(){
 }
 
 //This function will display the game model.  It displays the ships on the users board, and then shows where there have been hits and misses on both boards.
-function displayGameState(gameModel){
-$( '#MyBoard td'  ).css("background-color", "blue");
-$( '#TheirBoard td'  ).css("background-color", "blue");
+function displayGameState(gameModel) {
+  $( '#MyBoard td'  ).css("background-color", "blue");
+  $( '#TheirBoard td'  ).css("background-color", "blue");
 
-displayShip(gameModel.aircraftCarrier);
-displayShip(gameModel.battleship);
-displayShip(gameModel.cruiser);
-displayShip(gameModel.destroyer);
-displayShip(gameModel.submarine);
+  displayShip(gameModel.aircraftCarrier);
+  displayShip(gameModel.battleship);
+  displayShip(gameModel.cruiser);
+  displayShip(gameModel.destroyer);
+  displayShip(gameModel.submarine);
 
-for (var i = 0; i < gameModel.computerMisses.length; i++) {
-   $( '#TheirBoard #' + gameModel.computerMisses[i].across + '_' + gameModel.computerMisses[i].down ).css("background-color", "green");
-}
-for (var i = 0; i < gameModel.computerHits.length; i++) {
-   $( '#TheirBoard #' + gameModel.computerHits[i].across + '_' + gameModel.computerHits[i].down ).css("background-color", "red");
-}
+  for (var i = 0; i < gameModel.computerMisses.length; i++) {
+    $( '#TheirBoard #' + gameModel.computerMisses[i].across + '_' + gameModel.computerMisses[i].down ).css("background-color", "green");
+  }
+  for (var i = 0; i < gameModel.computerHits.length; i++) {
+    $( '#TheirBoard #' + gameModel.computerHits[i].across + '_' + gameModel.computerHits[i].down ).css("background-color", "red");
+  }
 
-for (var i = 0; i < gameModel.playerMisses.length; i++) {
-   $( '#MyBoard #' + gameModel.playerMisses[i].across + '_' + gameModel.playerMisses[i].down ).css("background-color", "green");
-}
-for (var i = 0; i < gameModel.playerHits.length; i++) {
-   $( '#MyBoard #' + gameModel.playerHits[i].across + '_' + gameModel.playerHits[i].down ).css("background-color", "red");
-}
+  for (var i = 0; i < gameModel.playerMisses.length; i++) {
+    $( '#MyBoard #' + gameModel.playerMisses[i].across + '_' + gameModel.playerMisses[i].down ).css("background-color", "green");
+  }
+  for (var i = 0; i < gameModel.playerHits.length; i++) {
+    $( '#MyBoard #' + gameModel.playerHits[i].across + '_' + gameModel.playerHits[i].down ).css("background-color", "red");
+  }
 
-
+  if(Array.isArray(gameModel.computerHits) && gameModel.computerHits.length == "17") {
+    var newGame = confirm("You win! Would you like to start a new game?");
+    if(newGame) {
+      location.reload();
+    }
+  } else if(Array.isArray(gameModel.playerHits) && gameModel.playerHits == "17") {
+    var newGame = confirm("You lost! Would you like to start a new game?");
+    if(newGame) {
+      location.reload();
+    }
+  }
 
 }
 

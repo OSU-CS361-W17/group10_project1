@@ -110,7 +110,6 @@ public class Ship {
 
         else
             return false;
-
     }
 
 }

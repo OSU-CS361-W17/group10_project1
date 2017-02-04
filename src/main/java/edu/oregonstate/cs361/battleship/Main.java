@@ -2,13 +2,18 @@ package edu.oregonstate.cs361.battleship;
 
 import com.google.gson.Gson;
 import spark.Request;
-import static spark.Spark.get;
-import static spark.Spark.post;
-import static spark.Spark.staticFiles;
+import spark.Response;
+import spark.Spark;
+
+import static spark.Spark.*;
 
 public class Main {
 
+
     public static void main(String[] args) {
+        Spark.exception(Exception.class, (exception, request, response) -> {
+            exception.printStackTrace();
+        });
         //This will allow us to server the static pages such as index.html, app.js, etc.
         staticFiles.location("/public");
 
@@ -17,7 +22,7 @@ public class Main {
         //This will listen to POST requests and expects to receive a game model, as well as location to fire to
         post("/fire/:row/:col", (req, res) -> fireAt(req));
         //This will listen to POST requests and expects to receive a game model, as well as location to place the ship
-        post("/placeShip/:ship/:row/:col/:orientation", (req, res) -> placeShip(req));
+        post("/placeShip/:ship/:row/:col/:orientation", (req, res) -> placeShip(req, res));
     }
 
     //This function should return a new model
@@ -39,7 +44,7 @@ public class Main {
     }
 
     //This controller should take a json object from the front end, and place the ship as requested, and then return the object.
-    private static String placeShip(Request req) {
+    private static String placeShip(Request req, Response res) {
         BattleshipModel model = getModelFromReq(req);
 
         String shipName = req.params(":ship");
@@ -48,7 +53,6 @@ public class Main {
         String orientation = req.params(":orientation");
 
         model.placeShip(shipName, row, col, orientation);
-
         return modelToJSON(model);
     }
 
