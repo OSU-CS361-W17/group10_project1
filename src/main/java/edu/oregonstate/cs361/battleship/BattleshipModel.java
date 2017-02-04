@@ -98,11 +98,11 @@ public class BattleshipModel {
 
     }
     private void placeComputerShips() {
-         placeShip(computerDestroyer.getName(),1,1,"vertical");
-         placeShip(computerSubmarine.getName(),7,3,"horizontal");
-         placeShip(computerCruiser.getName(),6,2,"horizontal");
-         placeShip(computerBattleship.getName(),3,4,"vertical");
-         placeShip(computerAircraftCarrier.getName(),5,5,"horizontal");
+        this.placeShip("computerDestroyer",1,1,"vertical");
+        this.placeShip("computerSubmarine"7,3,"horizontal");
+        this.placeShip("computerCruiser",6,2,"horizontal");
+        this.placeShip("computerBattleship",3,4,"vertical");
+        this.placeShip("computerAircraftCarrier",5,5,"horizontal");
 
     }
 
