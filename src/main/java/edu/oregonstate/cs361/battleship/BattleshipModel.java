@@ -43,7 +43,7 @@ public class BattleshipModel {
         this.computerSubmarine = new Ship("computerSubmarine", start, end);
         this.computerDestroyer = new Ship("computerDestroyer", start, end);
 
-       placeComputerShips();
+        placeComputerShips();
     }
 
     public BattleshipModel(
@@ -82,7 +82,7 @@ public class BattleshipModel {
     public void placeShip(String name, int down, int across, String orientation) {
         Ship selectedShip = this.getShip(name);
 
-        if(!selectedShip.isPlaced()) {
+        if (!selectedShip.isPlaced()) {
             CoordinatePair start = new CoordinatePair(down, across);
             selectedShip.setStart(start);
 
@@ -97,27 +97,25 @@ public class BattleshipModel {
         }
 
     }
+
     private void placeComputerShips() {
-        this.placeShip("computerDestroyer",1,1,"vertical");
-        this.placeShip("computerSubmarine",7,3,"horizontal");
-        this.placeShip("computerCruiser",6,2,"horizontal");
-        this.placeShip("computerBattleship",3,4,"vertical");
-        this.placeShip("computerAircraftCarrier",5,5,"horizontal");
+        this.placeShip("computerDestroyer", 1, 1, "vertical");
+        this.placeShip("computerSubmarine", 7, 3, "horizontal");
+        this.placeShip("computerCruiser", 6, 2, "horizontal");
+        this.placeShip("computerBattleship", 3, 4, "vertical");
+        this.placeShip("computerAircraftCarrier", 5, 5, "horizontal");
 
     }
 
 
     public void fireAt(CoordinatePair location) {
-
-
-        return null;
-
+        
     }
 
     private Ship getShip(String name) {
         Ship selectedShip = null;
 
-        switch(name) {
+        switch (name) {
             case "destroyer":
                 selectedShip = this.destroyer;
                 break;
@@ -152,12 +150,4 @@ public class BattleshipModel {
 
         return selectedShip;
     }
-
-
-<<<<<<< Updated upstream
-=======
-
-
->>>>>>> Stashed changes
 }
-
